@@ -10,40 +10,13 @@ namespace MemoryPair.Gameplay
         public GameObject front;
         public GameObject back;
         public int rank;
-        private bool isInteractible;
+        private bool isOpen;
 
-        public event Action<Card> OnCardClicked;
+        public event Action<Card> OnOpen;
+        public event Action<Card> OnClose;
 
-        private void Update() {
-            if (!isInteractible) {
-                return;
-            }
-            if (IsClickedOnCard()) {
-                Open();
-                OnCardClicked?.Invoke(this);
-            }
-        }
-
-        private bool IsClickedOnCard() {
-            if (Input.GetMouseButtonDown(0)) {
-                RaycastHit2D hit2d;
-                Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                hit2d = Physics2D.Raycast(position, Vector3.forward);
-                if (hit2d.collider == null) {
-                    return false;
-                }
-                Card card = hit2d.collider.GetComponent<Card>();
-                if (card == null) {
-                    return false;
-                }
-                if (card != this) {
-                    return false;
-                }
-                Debug.Log(this + " is clicked.");
-                return true;
-            }
-            return false;
+        private void Awake() {
+            isOpen = false;
         }
 
         internal Vector3 GetPosition() {
@@ -58,20 +31,29 @@ namespace MemoryPair.Gameplay
             transform.position = position;
         }
 
-        public void Open() {
-            back.SetActive(false);
+        public void Interact(Card card) {
+            if (card != this) {
+                return;
+            }
+            if (!isOpen) {
+                Open();
+            }
         }
+
+        private void Open() {
+            back.SetActive(false);
+            isOpen = true;
+            OnOpen?.Invoke(this);
+        }
+
         public void Close() {
             back.SetActive(true);
+            isOpen = false;
+            OnClose?.Invoke(this);
         }
+
         public void SetFrontSprite(Sprite sprite) {
             front.GetComponent<SpriteRenderer>().sprite = sprite;
-        }
-        public void DisableInteraction() {
-            isInteractible = false;
-        }
-        public void EnableInteraction() {
-            isInteractible = true;
         }
     }
 }

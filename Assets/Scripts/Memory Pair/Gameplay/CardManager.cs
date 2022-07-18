@@ -9,7 +9,7 @@ namespace MemoryPair.Gameplay
     {
         [SerializeField] private GameObject cardPrefab;
         [SerializeField] private Sprite[] cardsSprite;
-
+        
         public List<Card> cardList;
 
         public void Awake() {
@@ -29,6 +29,12 @@ namespace MemoryPair.Gameplay
             }
         }
 
+        internal void SetClickEvent(InputManager input) {
+            for (int i=0; i<52; i++) {
+                input.OnCardClicked += cardList[i].Interact;
+            }
+        }
+
         private void SwapCardPosition(Card card1, Card card2) {
             Vector3 temp;
             temp = card1.GetPosition();
@@ -42,7 +48,6 @@ namespace MemoryPair.Gameplay
                 cardList[i].SetFrontSprite(cardsSprite[i]);
                 cardList[i].SetRank((i % 13) + 1);
                 cardList[i].SetPosition(GetCardPosition(i));
-                cardList[i].DisableInteraction();
             }
         }
 
