@@ -1,0 +1,17 @@
+{
+    "name": "MemoryPair.Gameplay",
+    "rootNamespace": "MemoryPair.Gameplay",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:2d384bbc6f6b94e4bb92e10503490cfb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
