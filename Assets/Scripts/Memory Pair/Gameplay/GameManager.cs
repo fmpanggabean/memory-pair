@@ -17,7 +17,7 @@ namespace MemoryPair.Gameplay {
             cardManager.SetClickEvent(inputManager);
             playerManager.SetPlayerCount();
             
-            //StartGame();
+            StartGame();
         }
 
         private void StartGame() {

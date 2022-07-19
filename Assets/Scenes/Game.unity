@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &133577607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 133577608}
+  - component: {fileID: 133577609}
+  m_Layer: 0
+  m_Name: Player Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &133577608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133577607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &133577609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133577607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509b5ad46daaaff4dbdc52065ccb2f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &155407951
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +304,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 514219215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0712a3cd6b85184eb6f5141536967f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 221a52c0b6486bf43be43f35de41a929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -390,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cabaca79c76aa347bca8bee69bd0391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 514219217}
+  inputManager: {fileID: 514219217}
   cardManager: {fileID: 155407953}
+  playerManager: {fileID: 133577609}
   isPlaying: 0
