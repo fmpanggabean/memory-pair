@@ -7,6 +7,8 @@ namespace MemoryPair.Gameplay
 {
     public class CardManager : MonoBehaviour
     {
+        public InputManager InputManager => FindObjectOfType<InputManager>();
+
         [SerializeField] private GameObject cardPrefab;
         [SerializeField] private Sprite[] cardsSprite;
         
@@ -15,6 +17,7 @@ namespace MemoryPair.Gameplay
         public void Awake() {
             GenerateCard();
             RandomizeCardPosition();
+            SetClickEvent();
         }
 
         private void RandomizeCardPosition() {
@@ -29,9 +32,9 @@ namespace MemoryPair.Gameplay
             }
         }
 
-        internal void SetClickEvent(InputManager input) {
+        internal void SetClickEvent() {
             for (int i=0; i<52; i++) {
-                input.OnCardClicked += cardList[i].Interact;
+                InputManager.OnCardClicked += cardList[i].Interact;
             }
         }
 

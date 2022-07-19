@@ -152,7 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &133577609
 MonoBehaviour:
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509b5ad46daaaff4dbdc52065ccb2f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DataContainer: {fileID: 11400000, guid: 0a8ab0cb4ff3d4d4aabe1a573a358fb0, type: 2}
 --- !u!1 &155407951
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +420,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1663833808
 MonoBehaviour:
@@ -433,7 +434,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cabaca79c76aa347bca8bee69bd0391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 514219217}
-  cardManager: {fileID: 155407953}
-  playerManager: {fileID: 133577609}
   isPlaying: 0

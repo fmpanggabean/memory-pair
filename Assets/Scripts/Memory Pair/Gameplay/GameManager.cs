@@ -4,25 +4,24 @@ using UnityEngine;
 
 namespace MemoryPair.Gameplay {
     public class GameManager : MonoBehaviour {
-        public InputManager inputManager;
-        public CardManager cardManager;
-        public PlayerManager playerManager;
+        public InputManager InputManager => FindObjectOfType<InputManager>();
+        public CardManager CardManager => FindObjectOfType<CardManager>();
+        public PlayerManager PlayerManager => FindObjectOfType<PlayerManager>();
 
         public bool isPlaying;
 
         private void Awake() {
             isPlaying = false;
+
+            PlayerManager.CreatePlayer();
         }
-        private void Start() {
-            cardManager.SetClickEvent(inputManager);
-            playerManager.SetPlayerCount();
-            
+        private void Start() {            
             StartGame();
         }
 
         private void StartGame() {
             isPlaying = true;
-            inputManager.EnableInteraction();
+            InputManager.EnableInteraction();
         }
     }
 }
