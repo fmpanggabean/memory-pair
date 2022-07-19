@@ -14,6 +14,8 @@ namespace MemoryPair.Gameplay
         
         public List<Card> cardList;
 
+        public event Action OnAllCardsOpened;
+
         public void Awake() {
             GenerateCard();
             RandomizeCardPosition();
@@ -30,6 +32,42 @@ namespace MemoryPair.Gameplay
 
                 randomCardPool.RemoveAt(randomCardIndex);
             }
+        }
+
+        internal IEnumerator OpenAllCard(CardComparator cardComparator) {
+            foreach (Card card in cardList) {
+                if (!card.isOpen) {
+                    Card c1 = card;
+                    Card c2 = SearchMatch(card);
+                    c1.Open();
+                    c2.Open();
+                    yield return cardComparator.Compare(c1, c2);                    
+                }
+            }
+        }
+
+        private Card SearchMatch(Card card1) {
+            foreach (Card card2 in cardList) {
+                if (card1 == card2) {
+                    continue;
+                }
+                if (card2.isOpen) {
+                    continue;
+                }
+                if (card1.rank == card2.rank) {
+                    return card2;
+                }
+            }
+            return null;
+        }
+
+        internal void CardCheck() {
+            foreach(Card card in cardList) {
+                if (!card.isOpen) {
+                    return;
+                }
+            }
+            OnAllCardsOpened?.Invoke();
         }
 
         internal void SetClickEvent() {
