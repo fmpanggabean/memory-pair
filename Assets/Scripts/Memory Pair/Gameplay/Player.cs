@@ -16,5 +16,9 @@ namespace MemoryPair.Gameplay {
             Score++;
             OnScoreAdded?.Invoke(Score);
         }
+
+        internal int GetPlayerNumber() {
+            return index + 1;
+        }
     }
 }

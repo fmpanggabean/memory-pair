@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c34a83955836d48913901cf84907f9, type: 3}
   m_Name: Data Container
   m_EditorClassIdentifier: 
-  playerCount: 0
+  playerCount: 3

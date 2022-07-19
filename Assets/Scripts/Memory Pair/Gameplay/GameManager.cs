@@ -4,25 +4,40 @@ using UnityEngine;
 
 namespace MemoryPair.Gameplay {
     public class GameManager : MonoBehaviour {
-        public InputManager inputManager;
-        public CardManager cardManager;
-        public PlayerManager playerManager;
+        public InputManager InputManager => FindObjectOfType<InputManager>();
+        public CardManager CardManager => FindObjectOfType<CardManager>();
+        public PlayerManager PlayerManager => FindObjectOfType<PlayerManager>();
+        public CardComparator CardComparator;
 
         public bool isPlaying;
+
+        public event Action<Player> OnGameOver;
 
         private void Awake() {
             isPlaying = false;
         }
+
         private void Start() {
-            cardManager.SetClickEvent(inputManager);
-            playerManager.SetPlayerCount();
-            
+            CardComparator = new CardComparator(InputManager, PlayerManager, CardManager);
+            CardManager.OnAllCardsOpened += GameOver;
+            PlayerManager.CreatePlayer();
             StartGame();
+        }
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                StartCoroutine( CardManager.OpenAllCard(CardComparator) );
+            }
         }
 
         private void StartGame() {
             isPlaying = true;
-            inputManager.EnableInteraction();
+            PlayerManager.NextPlayer();
+            InputManager.EnableInteraction();
+        }
+
+        private void GameOver() {
+            OnGameOver?.Invoke(PlayerManager.GetWinner());
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MemoryPair.Gameplay
         public GameObject front;
         public GameObject back;
         public int rank;
-        private bool isOpen;
+        public bool isOpen;
 
         public event Action<Card> OnOpen;
         public event Action<Card> OnClose;
@@ -40,7 +40,7 @@ namespace MemoryPair.Gameplay
             }
         }
 
-        private void Open() {
+        public void Open() {
             back.SetActive(false);
             isOpen = true;
             OnOpen?.Invoke(this);

@@ -16,7 +16,7 @@ namespace MemoryPair.Menu
 
         private void Awake() {
             StartButton.onClick.AddListener(SetPlayerCount);
-            StartButton.onClick.AddListener(SceneController.ChangeScene);
+            StartButton.onClick.AddListener(SceneController.PlayGame);
         }
 
         private void SetPlayerCount() {

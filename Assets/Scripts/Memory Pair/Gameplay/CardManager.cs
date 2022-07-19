@@ -7,14 +7,19 @@ namespace MemoryPair.Gameplay
 {
     public class CardManager : MonoBehaviour
     {
+        public InputManager InputManager => FindObjectOfType<InputManager>();
+
         [SerializeField] private GameObject cardPrefab;
         [SerializeField] private Sprite[] cardsSprite;
         
         public List<Card> cardList;
 
+        public event Action OnAllCardsOpened;
+
         public void Awake() {
             GenerateCard();
             RandomizeCardPosition();
+            SetClickEvent();
         }
 
         private void RandomizeCardPosition() {
@@ -29,9 +34,45 @@ namespace MemoryPair.Gameplay
             }
         }
 
-        internal void SetClickEvent(InputManager input) {
+        internal IEnumerator OpenAllCard(CardComparator cardComparator) {
+            foreach (Card card in cardList) {
+                if (!card.isOpen) {
+                    Card c1 = card;
+                    Card c2 = SearchMatch(card);
+                    c1.Open();
+                    c2.Open();
+                    yield return cardComparator.Compare(c1, c2);                    
+                }
+            }
+        }
+
+        private Card SearchMatch(Card card1) {
+            foreach (Card card2 in cardList) {
+                if (card1 == card2) {
+                    continue;
+                }
+                if (card2.isOpen) {
+                    continue;
+                }
+                if (card1.rank == card2.rank) {
+                    return card2;
+                }
+            }
+            return null;
+        }
+
+        internal void CardCheck() {
+            foreach(Card card in cardList) {
+                if (!card.isOpen) {
+                    return;
+                }
+            }
+            OnAllCardsOpened?.Invoke();
+        }
+
+        internal void SetClickEvent() {
             for (int i=0; i<52; i++) {
-                input.OnCardClicked += cardList[i].Interact;
+                InputManager.OnCardClicked += cardList[i].Interact;
             }
         }
 
